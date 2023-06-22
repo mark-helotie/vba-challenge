@@ -9,9 +9,9 @@ Dim VolMax, CumulVolume As LongLong
 For Each ws In Worksheets
         
     ' Initialize Some variables
-    CumulVolume = 0                    ' starting from scratch for first ticker
-    OpenPrice = ws.Cells(2, 3).Value   ' set opening price for first ticker
     SummChartRow = 2                   ' Summary Chart starts on row 2
+    CumulVolume = 0                    ' Start from scratch for first ticker
+    OpenPrice = ws.Cells(2, 3).Value   ' Set opening price for first ticker
 
     ' Find out how many rows on this page
     LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
@@ -47,7 +47,7 @@ For Each ws In Worksheets
             CumulVolume = CumulVolume + ws.Cells(CurrRow, 7).Value
 
         Else    ' We have a NEW ticker coming next!!!
-            ' Put this ticker into the Summary Chart
+                ' Put current ticker into the Summary Chart
             ws.Cells(SummChartRow, 9).Value = ws.Cells(CurrRow, 1).Value
             ' Compute yearly change and put into Summary Chart
             ws.Cells(SummChartRow, 10).Value = ws.Cells(CurrRow, 6).Value - OpenPrice
@@ -76,22 +76,22 @@ For Each ws In Worksheets
     
     ' We have processed ALL the worksheets... now we do the Greatest chart.
 
-    ' find max/min values in the summary table
+    ' Find max/min values in the summary table
     MaxInc = Application.WorksheetFunction.Max(ws.Range("K:K"))
     MinInc = Application.WorksheetFunction.Min(ws.Range("K:K"))
     VolMax = Application.WorksheetFunction.Max(ws.Range("L:L"))
     
-    ' find the row number of each of the above variables
+    ' Find the row number of each of the above variables
     MaxRow = Application.WorksheetFunction.Match(MaxInc, ws.Range("K:K"), 0)
     MinRow = Application.WorksheetFunction.Match(MinInc, ws.Range("K:K"), 0)
     VolRow = Application.WorksheetFunction.Match(VolMax, ws.Range("L:L"), 0)
       
-    ' populate Greatest table with values found above for each min/max
+    ' Populate Greatest table with values found above for each min/max
     ws.Range("Q2").Value = MaxInc
     ws.Range("Q3").Value = MinInc
     ws.Range("Q4").Value = VolMax
     
-    ' using the row numbers found above, populate the ticker symbols
+    ' Using the row numbers found above, populate the ticker symbols
     ws.Range("P2").Value = ws.Cells(MaxRow, 9).Value
     ws.Range("P3").Value = ws.Cells(MinRow, 9).Value
     ws.Range("P4").Value = ws.Cells(VolRow, 9).Value
@@ -102,4 +102,3 @@ For Each ws In Worksheets
 Next ws
     
 End Sub
-
