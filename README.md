@@ -18,8 +18,6 @@ And from the HUGE 2018/2019/2020 file:
 ![image](https://github.com/mark-helotie/vba-challenge/assets/43053988/d1376c0b-ca6f-48b5-9ea6-6d382974b2ca)
 ![image](https://github.com/mark-helotie/vba-challenge/assets/43053988/b9424df8-e74d-457e-b6a8-226848cb1fe0)
 
-Note that I did some additional (above and beyond) formatting... added , for the volume columns, bold column headers, etc.
-All in the VB code.
-
-
+Note that I did some additional (above and beyond) formatting... added "," in the volume columns, bold column headers, etc.
+All within the VB code.
 
